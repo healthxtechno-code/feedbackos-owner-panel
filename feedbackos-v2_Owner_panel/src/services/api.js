@@ -24,7 +24,7 @@ function createAxiosInstance(baseURL, token) {
 }
 
 // Global reference — updated when settings change
-let _baseURL = sessionStorage.getItem('feedbackos_api_url') || '';
+let _baseURL = sessionStorage.getItem('https://script.google.com/macros/s/AKfycbx_GerFGuXeCpoN8ulmSGxlLgMciA-w4a1Fpb4Tkr1b4z_oQPi3bR0gSITuV1wpL7NPjg/exec') || '';
 let _getToken = () => null;
 
 export function configureAPI(baseURL, getToken) {
