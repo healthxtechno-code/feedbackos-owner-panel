@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0d12;
+  --surface: #111620;
+  --surface2: #181f2e;
+  --surface3: #1f2940;
+  --border: #1e2d45;
+  --border2: #263852;
+  --accent: #3b82f6;
+  --accent2: #60a5fa;
+  --accent-g: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #475569;
+  --white: #ffffff;
+  --r: 12px;
+  --r2: 18px;
+  --shadow: 0 4px 24px rgba(0,0,0,.4);
+  --shadow2: 0 8px 40px rgba(0,0,0,.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(59,130,246,.35); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-card text-sm font-semibold cursor-pointer border-none font-sans transition-all duration-200;
+  }
+  .btn-primary {
+    background: var(--accent-g);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(59,130,246,.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59,130,246,.4);
+  }
+  .btn-ghost {
+    @apply bg-transparent text-slate-400 border border-border2;
+  }
+  .btn-ghost:hover {
+    background: var(--surface2);
+    @apply text-white;
+  }
+  .btn-danger {
+    background: rgba(239,68,68,.15);
+    color: var(--red);
+    border: 1px solid rgba(239,68,68,.3);
+  }
+  .btn-success {
+    background: rgba(16,185,129,.15);
+    color: var(--green);
+    border: 1px solid rgba(16,185,129,.3);
+  }
+  .btn:active { transform: scale(.97) !important; }
+  .btn:disabled { @apply opacity-50 cursor-not-allowed; transform: none !important; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+  }
+
+  .field-label {
+    @apply text-xs font-bold text-slate-400 uppercase tracking-wider;
+  }
+
+  .field-input {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    @apply px-3.5 py-2.5 text-sm font-sans text-white outline-none transition-all duration-200 w-full;
+  }
+  .field-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+  }
+  .field-input::placeholder { color: var(--text3); }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold;
+  }
+  .badge-green { background: rgba(16,185,129,.15); color: var(--green); }
+  .badge-red { background: rgba(239,68,68,.15); color: var(--red); }
+  .badge-blue { background: rgba(59,130,246,.15); color: var(--accent2); }
+  .badge-amber { background: rgba(245,158,11,.15); color: var(--amber); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.3s ease;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.status-dot.active {
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+.status-dot.inactive {
+  background: var(--text3);
+}
