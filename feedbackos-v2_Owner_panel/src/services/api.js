@@ -39,17 +39,25 @@ function api() {
 // ─── Auth ───────────────────────────────────────────────────────────────────
 export const authAPI = {
 login: async (username, password) => {
-  const res = await axios.post(_baseURL, {
-    action: "ownerLogin",
-    username,
-    password
+  const res = await fetch(_baseURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams({
+      action: "ownerLogin",
+      username,
+      password
+    })
   });
 
-  if (res.data.status !== "ok") {
-    throw new Error(res.data.message || "Login failed");
+  const data = await res.json();
+
+  if (data.status !== "ok") {
+    throw new Error(data.message || "Login failed");
   }
 
-  return res.data;
+  return data;
 },
 
   logout: (token) =>
