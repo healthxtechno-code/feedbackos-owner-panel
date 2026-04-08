@@ -82,34 +82,38 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-            <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '.6px' }}>
-              Username
-            </label>
-            <input
-              className="field-input"
-              type="text"
-              autoComplete="username"
-              autoFocus
-              value={form.username}
-              onChange={e => setForm(p => ({ ...p, username: e.target.value }))}
-              disabled={isLoading}
-            />
+            <label htmlFor="username" style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '.6px' }}>
+  Username
+</label>
+<input
+  id="username"
+  name="username"
+  className="field-input"
+  type="text"
+  autoComplete="username"
+  autoFocus
+  value={form.username}
+  onChange={e => setForm(p => ({ ...p, username: e.target.value }))}
+  disabled={isLoading}
+/>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-            <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '.6px' }}>
-              Password
-            </label>
-            <div style={{ position: 'relative' }}>
-              <input
-                className="field-input"
-                type={showPwd ? 'text' : 'password'}
-                autoComplete="current-password"
-                value={form.password}
-                onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
-                disabled={isLoading}
-                style={{ paddingRight: 40 }}
-              />
+            <label htmlFor="password" style={{ fontSize: 11, fontWeight: 700, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '.6px' }}>
+  Password
+</label>
+<div style={{ position: 'relative' }}>
+  <input
+    id="password"
+    name="password"
+    className="field-input"
+    type={showPwd ? 'text' : 'password'}
+    autoComplete="current-password"
+    value={form.password}
+    onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
+    disabled={isLoading}
+    style={{ paddingRight: 40 }}
+  />
               <button
                 type="button"
                 onClick={() => setShowPwd(v => !v)}
