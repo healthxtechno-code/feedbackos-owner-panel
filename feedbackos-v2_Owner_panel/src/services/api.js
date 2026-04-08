@@ -38,8 +38,19 @@ function api() {
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
 export const authAPI = {
-  login: (username, password) =>
-    createAxiosInstance(_baseURL).post('/auth/login', { username, password }),
+login: async (username, password) => {
+  const res = await axios.post(_baseURL, {
+    action: "ownerLogin",
+    username,
+    password
+  });
+
+  if (res.data.status !== "ok") {
+    throw new Error(res.data.message || "Login failed");
+  }
+
+  return res.data;
+},
 
   logout: (token) =>
     createAxiosInstance(_baseURL, token).post('/auth/logout'),
